@@ -64,40 +64,44 @@ class MainApp extends StatelessWidget {
     ];
   }
 
+//
+//Appbar
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(65),
+          child: Container(
+            padding: const EdgeInsets.only(top: 5), // 위쪽에 패딩을 추가합니다.
+            color: Colors.transparent,
+            child: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              centerTitle: true,
+              title: const Text(
+                '마이페이지',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 28,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+              actions: [
+                IconButton(
+                  iconSize: 30,
+                  color: Colors.white,
+                  onPressed: () {},
+                  icon: const Icon(Icons.settings),
+                ),
+              ],
+            ),
+          ),
+        ),
         backgroundColor: const Color.fromARGB(255, 12, 19, 79),
         body: SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(height: 40),
-//
-//마이페이지 + 설정버튼
-              SizedBox(
-                width: double.infinity,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const SizedBox(width: 60),
-                    const Text(
-                      '마이페이지',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 28,
-                        fontWeight: FontWeight.w800,
-                      ),
-                    ),
-                    IconButton(
-                      iconSize: 30,
-                      color: Colors.white,
-                      onPressed: () {},
-                      icon: const Icon(Icons.settings),
-                    ),
-                  ],
-                ),
-              ),
 //
 //프로필 카드
               Container(
