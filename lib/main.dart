@@ -61,6 +61,7 @@ class _MainAppState extends State<MainApp> {
 //
 //Bottom Navigation Bar
         bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
           currentIndex: _currentIndex,
           onTap: (index) {
             setState(() {
@@ -71,6 +72,8 @@ class _MainAppState extends State<MainApp> {
           selectedItemColor: const Color.fromARGB(255, 0, 0, 0),
           unselectedItemColor:
               const Color.fromARGB(146, 0, 0, 0).withOpacity(0.6),
+          showSelectedLabels: true,
+          showUnselectedLabels: false,
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
@@ -123,7 +126,7 @@ class ObservePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Center(
       child: Text(
-        '검색 페이지',
+        '관측 페이지',
         style: TextStyle(
           fontSize: 24,
           fontWeight: FontWeight.bold,
