@@ -53,7 +53,7 @@ class LogInScreen extends StatelessWidget {
                           horizontal: Sizes.size20,
                         ),
                         decoration: BoxDecoration(
-                          color: const Color.fromRGBO(252, 202, 70, 1),
+                          color: Theme.of(context).primaryColor,
                           border: Border.all(
                             color: Colors.grey.shade300,
                             width: Sizes.size1,

@@ -12,10 +12,11 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+          primaryColor: const Color.fromRGBO(252, 202, 70, 1),
           appBarTheme: const AppBarTheme(
-        backgroundColor: Colors.transparent,
-        centerTitle: true,
-      )),
+            backgroundColor: Colors.transparent,
+            centerTitle: true,
+          )),
       home: const LogInScreen(),
     );
   }
