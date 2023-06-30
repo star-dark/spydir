@@ -18,16 +18,18 @@ class _MainAppState extends State<MainApp> {
   final List<Widget> _pages = [
     const MainPage(),
     const ObservePage(),
+    const WritePage(),
     const CalendarPage(),
     const ProfilePage(),
   ];
 
   @override
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
 //
-//Top App Bar
+// Top App Bar
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(65),
           child: Container(
@@ -59,39 +61,72 @@ class _MainAppState extends State<MainApp> {
         backgroundColor: const Color.fromARGB(255, 12, 19, 79),
         body: _pages[_currentIndex],
 //
-//Bottom Navigation Bar
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          currentIndex: _currentIndex,
-          onTap: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
-          backgroundColor: const Color.fromARGB(255, 29, 39, 125),
-          selectedItemColor: const Color.fromARGB(255, 0, 0, 0),
-          unselectedItemColor:
-              const Color.fromARGB(146, 0, 0, 0).withOpacity(0.6),
-          showSelectedLabels: true,
-          showUnselectedLabels: false,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: '메인',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.rocket_launch),
-              label: '관측',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_month),
-              label: '캘린더',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: '마이페이지',
-            ),
-          ],
+// Bottom Navigation Bar
+        floatingActionButton: _currentIndex == 2
+            ? null
+            : FloatingActionButton.large(
+                onPressed: () {
+                  setState(() {
+                    _currentIndex = 2;
+                  });
+                },
+                elevation: 0,
+                backgroundColor: const Color.fromARGB(255, 12, 19, 79),
+                child: const Icon(
+                  Icons.add_circle,
+                  size: 80,
+                ),
+              ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: BottomAppBar(
+          color: const Color.fromARGB(255, 12, 19, 79),
+          height: 65,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              IconButton(
+                iconSize: 30,
+                color: Colors.white,
+                onPressed: () {
+                  setState(() {
+                    _currentIndex = 0;
+                  });
+                },
+                icon: const Icon(Icons.home),
+              ),
+              IconButton(
+                iconSize: 30,
+                color: Colors.white,
+                onPressed: () {
+                  setState(() {
+                    _currentIndex = 1;
+                  });
+                },
+                icon: const Icon(Icons.rocket_launch),
+              ),
+              const SizedBox(),
+              IconButton(
+                iconSize: 30,
+                color: Colors.white,
+                onPressed: () {
+                  setState(() {
+                    _currentIndex = 3;
+                  });
+                },
+                icon: const Icon(Icons.calendar_month),
+              ),
+              IconButton(
+                iconSize: 30,
+                color: Colors.white,
+                onPressed: () {
+                  setState(() {
+                    _currentIndex = 4;
+                  });
+                },
+                icon: const Icon(Icons.person),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -127,6 +162,25 @@ class ObservePage extends StatelessWidget {
     return const Center(
       child: Text(
         '관측 페이지',
+        style: TextStyle(
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
+}
+
+//
+//일기쓰기 페이지
+class WritePage extends StatelessWidget {
+  const WritePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text(
+        '일기 쓰기 페이지',
         style: TextStyle(
           fontSize: 24,
           fontWeight: FontWeight.bold,
@@ -352,9 +406,8 @@ class ProfilePage extends StatelessWidget {
 //
 //별자리 모음
           Container(
-            decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 29, 39, 125),
-              borderRadius: BorderRadius.circular(15),
+            decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 29, 39, 125),
             ),
             child: Padding(
               padding: const EdgeInsets.all(20),
