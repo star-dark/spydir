@@ -60,6 +60,7 @@ class _EmailScreenState extends State<EmailScreen> {
               ),
               Gaps.v16,
               Container(
+                padding: const EdgeInsets.symmetric(horizontal: Sizes.size10),
                 decoration: BoxDecoration(
                   color: Colors.grey.shade600,
                   borderRadius: BorderRadius.circular(5),

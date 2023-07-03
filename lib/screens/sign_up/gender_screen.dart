@@ -6,6 +6,7 @@ import '../../constants/gaps.dart';
 import '../../widgets/next_button.dart';
 
 const List<String> _genderList = <String>[
+  '선택',
   '남성',
   '여성',
 ];
@@ -20,18 +21,13 @@ class GenderScreen extends StatefulWidget {
 class _GenderScreenState extends State<GenderScreen> {
   int _selectedGender = 0;
   final TextEditingController _genderController = TextEditingController();
-  @override
-  void initState() {
-    _genderController.value = const TextEditingValue(text: "Select");
-    super.initState();
-  }
 
   void _showDialog(Widget child) {
     showCupertinoModalPopup<void>(
       context: context,
       builder: (BuildContext context) => Container(
         height: 216,
-        padding: const EdgeInsets.only(top: 6.0),
+        padding: const EdgeInsets.only(top: Sizes.size6),
         // The Bottom margin is provided to align the popup above the system navigation bar.
         margin: EdgeInsets.only(
           bottom: MediaQuery.of(context).viewInsets.bottom,
@@ -100,6 +96,7 @@ class _GenderScreenState extends State<GenderScreen> {
                       })),
                 ),
                 child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: Sizes.size10),
                   decoration: BoxDecoration(
                     color: Colors.grey.shade600,
                     borderRadius: BorderRadius.circular(5),
@@ -111,6 +108,7 @@ class _GenderScreenState extends State<GenderScreen> {
                       icon: FaIcon(
                         FontAwesomeIcons.check,
                       ),
+                      hintText: "성별",
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
                           color: Colors.grey,
@@ -132,8 +130,8 @@ class _GenderScreenState extends State<GenderScreen> {
                 children: [
                   GestureDetector(
                     onTap: () => _onNextTap(),
-                    child: const NextButton(
-                      disabled: false,
+                    child: NextButton(
+                      disabled: (_genderList[_selectedGender] == "선택"),
                     ),
                   ),
                 ],
