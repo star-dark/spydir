@@ -17,10 +17,10 @@ class NextButton extends StatelessWidget {
         ),
         duration: const Duration(milliseconds: 300),
         child: const Text(
-          "Next",
+          "다음",
           style: TextStyle(
             fontSize: Sizes.size16,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w700,
           ),
         ),
       ),

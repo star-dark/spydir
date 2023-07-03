@@ -14,7 +14,7 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
           primaryColor: const Color.fromRGBO(252, 202, 70, 1),
           appBarTheme: const AppBarTheme(
-            backgroundColor: Colors.transparent,
+            backgroundColor: Colors.black,
             centerTitle: true,
           )),
       home: const LogInScreen(),

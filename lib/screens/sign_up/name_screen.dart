@@ -1,34 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:spydir/constants/sizes.dart';
-import 'package:spydir/screens/sign_up/set_password_screen.dart';
+import 'package:spydir/screens/sign_up/gender_screen.dart';
 import '../../constants/gaps.dart';
 import '../../widgets/next_button.dart';
 
-class EmailScreen extends StatefulWidget {
-  const EmailScreen({super.key});
+class SetNameScreen extends StatefulWidget {
+  const SetNameScreen({super.key});
 
   @override
-  State<EmailScreen> createState() => _EmailScreenState();
+  State<SetNameScreen> createState() => _SetNameScreenState();
 }
 
-class _EmailScreenState extends State<EmailScreen> {
-  final TextEditingController _emailController = TextEditingController();
-  String _email = "";
+class _SetNameScreenState extends State<SetNameScreen> {
+  final TextEditingController _nameController = TextEditingController();
+  String _name = "";
 
   @override
   void initState() {
-    _emailController.addListener(() {
+    _nameController.addListener(() {
       setState(() {
-        _email = _emailController.text;
+        _name = _nameController.text;
       });
     });
     super.initState();
   }
 
   void _onNextTap() {
-    if (_email.isEmpty) return;
-    Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => const SetPassWordScreen()));
+    if (_name.length < 2) return;
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const GenderScreen()));
   }
 
   @override
@@ -51,7 +51,7 @@ class _EmailScreenState extends State<EmailScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                "E-mail",
+                "닉네임",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: Sizes.size24,
@@ -66,7 +66,7 @@ class _EmailScreenState extends State<EmailScreen> {
                 ),
                 child: TextField(
                   style: const TextStyle(color: Colors.white),
-                  controller: _emailController,
+                  controller: _nameController,
                   decoration: const InputDecoration(
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
@@ -83,19 +83,13 @@ class _EmailScreenState extends State<EmailScreen> {
                   cursorColor: const Color.fromRGBO(252, 202, 70, 1),
                 ),
               ),
-              const Text(
-                "이메일을 입력해주세요.",
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
               Gaps.v32,
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   GestureDetector(
                     onTap: () => _onNextTap(),
-                    child: NextButton(disabled: _email.isEmpty),
+                    child: NextButton(disabled: (_name.length < 2)),
                   ),
                 ],
               ),
