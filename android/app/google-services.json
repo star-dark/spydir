@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "221854001552",
+    "project_id": "spydir-3d4d5",
+    "storage_bucket": "spydir-3d4d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:221854001552:android:4cc7cd63b8c6b52c086b15",
+        "android_client_info": {
+          "package_name": "com.example.spydir"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "221854001552-hajuf76suvln0rvnnihfv9ukpgivbta0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjUHki1QmCHJMp31KSDSPsPaYMqrryrE8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "221854001552-hajuf76suvln0rvnnihfv9ukpgivbta0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "221854001552-brupv6u7mn7pvvulq4b49ueikc8mdtvf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.spydir"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
