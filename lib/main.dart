@@ -1,289 +1,99 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:spydir/pages/main_page.dart';
+import 'package:spydir/widgets/bottom_navigation_bar.dart';
+import 'package:spydir/pages/observe_page.dart';
+import 'package:spydir/pages/write_page.dart';
+import 'package:spydir/pages/calendar_page.dart';
+import 'package:spydir/pages/profile_page.dart';
+import 'package:spydir/screens/login_screen.dart';
+import 'package:spydir/widgets/floating_button.dart';
 
 void main() {
   runApp(const MainApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-//
-//별자리 추가하는 부분 (jason 하드코딩)
-  List<Photo> getPhotos() {
-    return [
-      Photo(
-        id: 1,
-        imageUrl:
-            'https://www.shutterstock.com/image-vector/aries-zodiac-sign-zentangle-coloring-600w-1358582228.jpg',
-      ),
-      Photo(
-        id: 2,
-        imageUrl:
-            'https://www.shutterstock.com/image-vector/gemini-zodiac-sign-zentangle-coloring-600w-1358582231.jpg',
-      ),
-      Photo(
-        id: 3,
-        imageUrl:
-            'https://www.shutterstock.com/image-vector/capricorn-zodiac-sign-zentangle-coloring-600w-1358582234.jpg',
-      ),
-      Photo(
-        id: 4,
-        imageUrl:
-            'https://www.shutterstock.com/image-vector/cancer-zodiac-sign-zentangle-coloring-600w-1358582237.jpg',
-      ),
-      Photo(
-        id: 5,
-        imageUrl:
-            'https://www.shutterstock.com/image-vector/taurus-zodiac-sign-zentangle-coloring-600w-1358582243.jpg',
-      ),
-      Photo(
-        id: 6,
-        imageUrl:
-            'https://www.shutterstock.com/image-vector/libra-zodiac-sign-zentangle-coloring-600w-1358582249.jpg',
-      ),
-      Photo(
-        id: 7,
-        imageUrl:
-            'https://www.shutterstock.com/image-vector/leo-zodiac-sign-zentangle-coloring-600w-1358582252.jpg',
-      ),
-      Photo(
-        id: 8,
-        imageUrl:
-            'https://www.shutterstock.com/image-vector/pisces-zodiac-sign-zentangle-coloring-600w-1358582258.jpg',
-      ),
-      Photo(
-        id: 9,
-        imageUrl:
-            'https://www.shutterstock.com/image-vector/virgo-zodiac-sign-zentangle-coloring-600w-1358582246.jpg',
-      ),
-      Photo(
-        id: 10,
-        imageUrl:
-            'https://www.shutterstock.com/image-vector/aquarius-zodiac-sign-zentangle-coloring-600w-1358582261.jpg',
-      ),
-    ];
-  }
+class MainApp extends StatefulWidget {
+  const MainApp({Key? key}) : super(key: key);
+
+  @override
+  State<MainApp> createState() => _MainAppState();
+}
+
+class _MainAppState extends State<MainApp> {
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  bool isLogin = true; //로그인 상태 변경
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  int _currentIndex = 0;
+
+  final List<Widget> _pages = [
+    const MainPage(),
+    const ObservePage(),
+    const WritePage(),
+    const CalendarPage(),
+    const ProfilePage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
+    Widget initialPage;
+
+    void set2() {
+      setState(() {
+        _currentIndex = 2;
+      });
+    }
+
+    if (isLogin) {
+      initialPage = const MainPage(); //로그인 상태라면 메인페이지로 이동
+    }
+
     return MaterialApp(
-      home: Scaffold(
-        backgroundColor: const Color.fromARGB(255, 12, 19, 79),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              const SizedBox(height: 40),
-//
-//마이페이지 + 설정버튼
-              SizedBox(
-                width: double.infinity,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const SizedBox(width: 60),
-                    const Text(
-                      '마이페이지',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 28,
-                        fontWeight: FontWeight.w800,
-                      ),
-                    ),
-                    IconButton(
-                      iconSize: 30,
-                      color: Colors.white,
-                      onPressed: () {},
-                      icon: const Icon(Icons.settings),
-                    ),
-                  ],
-                ),
-              ),
-//
-//프로필 카드
-              Container(
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 29, 39, 125),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(30),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          IconButton(
-                            iconSize: 100,
-                            color: Colors.white,
-                            onPressed: () {},
-                            icon: const Icon(Icons.account_circle),
-                          ),
-                          const SizedBox(width: 10),
-                          Column(
-                            children: [
-                              Row(
-                                children: [
-                                  const Text(
-                                    '등급표시',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 15,
-                                    ),
-                                  ),
-                                  IconButton(
-                                    color: Colors.white,
-                                    iconSize: 15,
-                                    onPressed: () {},
-                                    icon: const Icon(Icons.help_rounded),
-                                  ),
-                                ],
-                              ),
-                              const Text(
-                                '닉네임 부분',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const SizedBox(width: 1),
-                          Column(
-                            children: const [
-                              Text(
-                                '받은 좋아요',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-                              ),
-                              SizedBox(height: 5),
-                              Text(
-                                '456',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                          const Text(
-                            '│',
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                          Column(
-                            children: const [
-                              Text(
-                                '별 개수',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-                              ),
-                              SizedBox(height: 5),
-                              Text(
-                                '1,234',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                          const Text(
-                            '│',
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                          Column(
-                            children: const [
-                              Text(
-                                '이어진 은하',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-                              ),
-                              SizedBox(height: 5),
-                              Text(
-                                '18',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(width: 1),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 15),
-//
-//별자리 모음
-              Container(
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 29, 39, 125),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: const [
-                          Text(
-                            '별자리',
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      StaggeredGridView.countBuilder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        crossAxisCount: 3,
-                        itemCount: getPhotos().length,
-                        itemBuilder: (context, index) {
-                          final photo = getPhotos()[index];
-                          return ClipOval(
-                            child: Image.network(
-                              photo.imageUrl,
-                              fit: BoxFit.cover,
-                            ),
-                          );
-                        },
-                        staggeredTileBuilder: (index) =>
-                            const StaggeredTile.fit(1),
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 10,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
+      theme: ThemeData(
+        primaryColor: const Color.fromRGBO(252, 202, 70, 1),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.black,
+          centerTitle: true,
         ),
       ),
+      home: isLogin
+          ? Scaffold(
+              //로그인 상태라면 기능 정상작동 아니라면 로그인페이지로 이동
+              body: Container(
+//
+//기능 1. 기본 배경화면
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('images/init_screen.jpg'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: _pages[_currentIndex],
+              ),
+
+//
+//기능 2. FloatingActionButton
+              floatingActionButton: //현재 글쓰기 페이지면 버튼 비활성화, 버튼을 누르면 글쓰기 페이지로 이동
+                  _currentIndex == 2
+                      ? null
+                      : FloatingButton(onTap: set2), //floating_button.dart
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerDocked,
+
+//
+//기능 3. bottomNavigationBar
+              bottomNavigationBar: isLogin //로그인 상태면 활성화, 로그인 상태가 아니면 비활성화
+                  ? BottomNavigation(
+                      //bottom_navigation_bar.dart
+                      currentIndex: _currentIndex,
+                      onTap: (index) {
+                        setState(() {
+                          _currentIndex = index;
+                        });
+                      },
+                    )
+                  : null,
+            )
+          : const LogInScreen(), //login_screen.dart
     );
   }
-}
-
-class Photo {
-  final int id;
-  final String imageUrl;
-
-  Photo({
-    required this.id,
-    required this.imageUrl,
-  });
 }
